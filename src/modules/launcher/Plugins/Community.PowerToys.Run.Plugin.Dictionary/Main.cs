@@ -44,27 +44,27 @@ namespace Community.PowerToys.Run.Plugin.Dictionary
             }
 
             // Parse
-            ConvertModel convertModel = InputInterpreter.Parse(query);
-            if (convertModel == null)
+            List<DictionarySearchResult> resultList = InputInterpreter.QueryDictionary(query.Search);
+            if (resultList?.Any() != true)
             {
                 return new List<Result>();
             }
 
             // Convert
-            return UnitHandler.Convert(convertModel)
-                .Select(x => GetResult(x))
-                .ToList();
+            return resultList
+              .Select(str => GetResult(str))
+              .ToList();
         }
 
-        private Result GetResult(UnitConversionResult result)
+        private Result GetResult(DictionarySearchResult result)
         {
             return new Result
             {
                 ContextData = result,
-                Title = string.Format("{0} {1}", result.ConvertedValue, result.UnitName),
+                Title = string.Format("{0}: {1}", result.KeyString, result.ResultString),
                 IcoPath = _icon_path,
-                Score = 300,
-                SubTitle = string.Format(Properties.Resources.copy_to_clipboard, result.QuantityType),
+                Score = result.Score,
+                SubTitle = string.Format(Properties.Resources.copy_to_clipboard, result.ResultString),
                 Action = c =>
                 {
                     var ret = false;
@@ -72,7 +72,7 @@ namespace Community.PowerToys.Run.Plugin.Dictionary
                     {
                         try
                         {
-                            Clipboard.SetText(result.ConvertedValue.ToString());
+                            Clipboard.SetText(result.ResultString);
                             ret = true;
                         }
                         catch (ExternalException)
@@ -88,7 +88,7 @@ namespace Community.PowerToys.Run.Plugin.Dictionary
             };
         }
 
-        private ContextMenuResult CreateContextMenuEntry(UnitConversionResult result)
+        private ContextMenuResult CreateContextMenuEntry(DictionarySearchResult result)
         {
             return new ContextMenuResult
             {
@@ -104,7 +104,7 @@ namespace Community.PowerToys.Run.Plugin.Dictionary
                     {
                         try
                         {
-                            Clipboard.SetText(result.ConvertedValue.ToString());
+                            Clipboard.SetText(result.ResultString);
                             ret = true;
                         }
                         catch (ExternalException)
@@ -122,13 +122,13 @@ namespace Community.PowerToys.Run.Plugin.Dictionary
 
         public List<ContextMenuResult> LoadContextMenus(Result selectedResult)
         {
-            if (!(selectedResult?.ContextData is UnitConversionResult))
+            if (!(selectedResult?.ContextData is DictionarySearchResult))
             {
                 return new List<ContextMenuResult>();
             }
 
             List<ContextMenuResult> contextResults = new List<ContextMenuResult>();
-            UnitConversionResult result = selectedResult.ContextData as UnitConversionResult;
+            DictionarySearchResult result = selectedResult.ContextData as DictionarySearchResult;
             contextResults.Add(CreateContextMenuEntry(result));
 
             return contextResults;
@@ -153,11 +153,11 @@ namespace Community.PowerToys.Run.Plugin.Dictionary
         {
             if (theme == Theme.Light || theme == Theme.HighContrastWhite)
             {
-                _icon_path = "Images/unitconverter.light.png";
+                _icon_path = "Images/dictionary.light.png";
             }
             else
             {
-                _icon_path = "Images/unitconverter.dark.png";
+                _icon_path = "Images/dictionary.dark.png";
             }
         }
 
