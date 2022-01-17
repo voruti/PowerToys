@@ -9,5 +9,5 @@
     "Website": "https://github.com/ThiefZero",
     "IcoPathDark": "Images\\unitconverter.dark.png",
     "IcoPathLight": "Images\\unitconverter.light.png",
-    "ExecuteFileName": "Community.PowerToys.Run.Plugin.UnitConverter.dll"
+    "ExecuteFileName": "Community.PowerToys.Run.Plugin.Dictionary.dll"
 }

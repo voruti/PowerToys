@@ -4,7 +4,7 @@
 
 using UnitsNet;
 
-namespace Community.PowerToys.Run.Plugin.UnitConverter
+namespace Community.PowerToys.Run.Plugin.Dictionary
 {
     public class UnitConversionResult
     {

@@ -8,7 +8,7 @@ using System.Globalization;
 using System.Linq;
 using UnitsNet;
 
-namespace Community.PowerToys.Run.Plugin.UnitConverter
+namespace Community.PowerToys.Run.Plugin.Dictionary
 {
     public static class UnitHandler
     {
