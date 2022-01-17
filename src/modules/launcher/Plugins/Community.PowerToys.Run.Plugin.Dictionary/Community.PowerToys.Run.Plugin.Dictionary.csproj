@@ -89,10 +89,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Images\unitconverter.light.png">
+    <None Update="Images\dictionary.light.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Images\unitconverter.dark.png">
+    <None Update="Images\dictionary.dark.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
