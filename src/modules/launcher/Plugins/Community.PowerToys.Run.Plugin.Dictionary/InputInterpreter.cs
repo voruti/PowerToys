@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using UnitsNet;
 using Wox.Plugin;
 
-namespace Community.PowerToys.Run.Plugin.UnitConverter
+namespace Community.PowerToys.Run.Plugin.Dictionary
 {
     public static class InputInterpreter
     {

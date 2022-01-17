@@ -12,7 +12,7 @@ using System.Windows.Input;
 using ManagedCommon;
 using Wox.Plugin;
 
-namespace Community.PowerToys.Run.Plugin.UnitConverter
+namespace Community.PowerToys.Run.Plugin.Dictionary
 {
     public class Main : IPlugin, IPluginI18n, IContextMenu, IDisposable
     {
