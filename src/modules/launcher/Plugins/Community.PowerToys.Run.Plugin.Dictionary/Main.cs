@@ -24,6 +24,8 @@ namespace Community.PowerToys.Run.Plugin.Dictionary
         private static string _icon_path;
         private bool _disposed;
 
+        private InputInterpreter _inputInterpreter;
+
         public void Init(PluginInitContext context)
         {
             if (context == null)
@@ -34,6 +36,8 @@ namespace Community.PowerToys.Run.Plugin.Dictionary
             _context = context;
             _context.API.ThemeChanged += OnThemeChanged;
             UpdateIconPath(_context.API.GetCurrentTheme());
+
+            _inputInterpreter = new InputInterpreter();
         }
 
         public List<Result> Query(Query query)
@@ -44,7 +48,7 @@ namespace Community.PowerToys.Run.Plugin.Dictionary
             }
 
             // Parse
-            List<DictionarySearchResult> resultList = InputInterpreter.QueryDictionary(query.Search);
+            List<DictionarySearchResult> resultList = _inputInterpreter.QueryDictionary(query.Search);
             if (resultList?.Any() != true)
             {
                 return new List<Result>();
