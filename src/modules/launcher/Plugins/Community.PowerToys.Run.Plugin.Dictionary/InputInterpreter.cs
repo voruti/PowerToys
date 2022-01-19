@@ -10,22 +10,27 @@ using System.Linq;
 // using Wox.Plugin;
 namespace Community.PowerToys.Run.Plugin.Dictionary
 {
-    public static class InputInterpreter
+    public class InputInterpreter
     {
-        private static readonly Dictionary<string, string> Dictionary = new Dictionary<string, string>()
-        {
-            { "Author", "voruti" },
-            { "Name", "Dictionary" },
-        };
+        private readonly Dictionary<string, string> dictionary;
 
-        public static List<DictionarySearchResult> QueryDictionary(string str)
+        public InputInterpreter()
+        {
+            this.dictionary = new Dictionary<string, string>()
+                {
+                    { "Author", "voruti" },
+                    { "Name", "Dictionary" },
+                };
+        }
+
+        public List<DictionarySearchResult> QueryDictionary(string str)
         {
             // str = Regex.Replace(str, @":$", string.Empty);
-            return Dictionary.Keys
+            return dictionary.Keys
                 .ToList()
                 .FindAll(stringKey => stringKey.ToLower().StartsWith(str.ToLower()))
-                .OrderBy(stringKey => (stringKey.Length - str.Length).ToString("D4") + Dictionary.GetValueOrDefault(stringKey))
-                .Select(stringKey => new DictionarySearchResult(stringKey, Dictionary.GetValueOrDefault(stringKey), (int)Math.Round(((double)str.Length / stringKey.Length) * 200)))
+                .OrderBy(stringKey => (stringKey.Length - str.Length).ToString("D4") + dictionary.GetValueOrDefault(stringKey))
+                .Select(stringKey => new DictionarySearchResult(stringKey, dictionary.GetValueOrDefault(stringKey), (int)Math.Round(((double)str.Length / stringKey.Length) * 200)))
                 .ToList();
         }
 
