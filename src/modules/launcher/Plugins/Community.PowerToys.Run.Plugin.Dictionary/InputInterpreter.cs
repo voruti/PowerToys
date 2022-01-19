@@ -4,7 +4,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
 
 // using System.Text.RegularExpressions;
 // using Wox.Plugin;
@@ -16,11 +18,11 @@ namespace Community.PowerToys.Run.Plugin.Dictionary
 
         public InputInterpreter()
         {
-            this.dictionary = new Dictionary<string, string>()
-                {
-                    { "Author", "voruti" },
-                    { "Name", "Dictionary" },
-                };
+            string documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string file = Path.Combine(documents, "PowerToys", "dictionary.json");
+            string json = File.ReadAllText(file);
+
+            dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
         }
 
         public List<DictionarySearchResult> QueryDictionary(string str)
