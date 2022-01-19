@@ -88,6 +88,7 @@
                 "modules\\launcher\\Plugins\\Uri\\Microsoft.Plugin.Uri.dll",
                 "modules\\launcher\\Plugins\\WindowWalker\\Microsoft.Plugin.WindowWalker.dll",
                 "modules\\launcher\\Plugins\\UnitConverter\\Community.PowerToys.Run.Plugin.UnitConverter.dll",
+                "modules\\launcher\\Plugins\\Dictionary\\Community.PowerToys.Run.Plugin.Dictionary.dll",
                 "modules\\launcher\\Plugins\\VSCodeWorkspaces\\Community.PowerToys.Run.Plugin.VSCodeWorkspaces.dll",
                 "modules\\launcher\\Plugins\\Service\\Microsoft.PowerToys.Run.Plugin.Service.dll",
                 "modules\\launcher\\Plugins\\System\\Microsoft.PowerToys.Run.Plugin.System.dll",
@@ -180,7 +181,8 @@
                 "vcruntime140_app.dll", 
                 "ColorCode.Core.dll", 
                 "ColorCode.UWP.dll",
-                "UnitsNet.dll"
+                "UnitsNet.dll",
+                "Newtonsoft.Json.dll"
             ],
             "SigningInfo": {
                 "Operations": [
